@@ -161,7 +161,7 @@ function genPatientSlipSegmentHTML() {
         } else {
             start = '';
         }
-        if (i == 7) {
+        if (i == 5) {
             end = `</div><div class="page-break-clear"></div><div class="page-break">&nbsp;</div>`;
             i = 0;
         } else {
@@ -191,8 +191,8 @@ function genPatientSlipSegmentHTML() {
 			//First dose details in CSV
 			
 			//Start table rows
-            firstdoselabels = '<tr class="table_left"><td>';
-			firstdosedetails = '<tr class="table_left"><td>';
+            firstdoselabels = '<tr class="table_left top_row"><td>';
+			firstdosedetails = '<tr class="table_left bottom_row"><td class="padding_bottom">';
 							
 			if(patient[keys['firstdose_type']] !== "" || patient[keys['firstdose_batch']] !== ""){
 			//If first dose type or batch exists then add to first column	
@@ -205,16 +205,16 @@ function genPatientSlipSegmentHTML() {
 			if(patient[keys['firstdose_batch']] !== "" || patient[keys['firstdose_type']] !== ""){
 				//Type or batch exists - close first column and start second
 				firstdoselabels = firstdoselabels + '</td><td>First Dose Date:</td></tr>';
-				firstdosedetails = firstdosedetails + '</td><td>' + patient[keys['firstdose_date']] + '</td></tr>';
+				firstdosedetails = firstdosedetails + '</td><td class="padding_bottom">' + patient[keys['firstdose_date']] + '</td></tr>';
 			}else{
 				//No type or batch - date in first column and blank second column
 				firstdoselabels = firstdoselabels + 'First Dose Date:</td><td></td></tr>';
-				firstdosedetails = firstdosedetails + patient[keys['firstdose_date']] + '</td><td></td></tr>';
+				firstdosedetails = firstdosedetails + patient[keys['firstdose_date']] + '</td><td class="padding_bottom"></td></tr>';
 			}
 			}else{
 				//No date - blank second column
 				firstdoselabels = firstdoselabels + '</td><td></td></tr>';
-				firstdosedetails = firstdosedetails + '</td><td></td></tr>';
+				firstdosedetails = firstdosedetails + '</td><td class="padding_bottom"></td></tr>';
 			}
 		}
         html = start + `<div class="col-print-6">
@@ -236,7 +236,16 @@ function genPatientSlipSegmentHTML() {
           ` + bookingQR + `
           </tr>
 		  ` + firstdoselabels + firstdosedetails + `
-          </table>
+		  
+		  <tr class="table_left">
+          <td class="padding_bottom padding_top">Injection Time:</div></td>
+          <td class="padding_bottom padding_top">Injection Arm: Left / Right</td>
+          </tr>
+		  <tr class="table_left">
+          <td>Clinician:</div></td>
+          <td>Batch Number: ` + batchNumber + `</td>
+          </tr>
+		  </table>
           <div class="qr-code single-qr" id="single-qr-` + index + `"></div>
           </div>` + end;
         fullhtml = fullhtml + html;

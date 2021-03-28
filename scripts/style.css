@@ -1,7 +1,7 @@
 .col-print-6 {
   width: 50%;
   float: left;
-  height: 350px;
+  height: 450px;
 }
 
 .col-print-6 .under-18 {
@@ -41,6 +41,27 @@ table {
   text-align: left;
   padding-bottom: 10px;
 }
+
+.padding_bottom{
+  padding-bottom: 10px;
+}
+
+.padding_top{
+  padding-top: 10px;
+}
+
+.bottom_row{
+  border-bottom: 1pt solid black;
+  border-left: 1pt solid black;
+  border-right: 1pt solid black;
+}
+
+.top_row{
+  border-top: 1pt solid black;
+  border-left: 1pt solid black;
+  border-right: 1pt solid black;
+}
+
 
 html,
 body {
